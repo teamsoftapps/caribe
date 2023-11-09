@@ -193,22 +193,26 @@ export const SearchPage = () => {
                         <div className={classes.itemControls}>
                           <div className={classes.mobilepriceContainer}>
                             <div className={classes.discountedPriceContainer}>
-                              <div className={classes.discountedPrice}>
+                              <div className={classes.mobilediscountedPrice}>
                                 ${product.price - 5}
                               </div>
-                              <div className={classes.price}>
-                                ${product.price}
-                              </div>
-                              <div className={classes.discountPercentaeg}>
-                                20%
+                              <div className={classes.DiscountedContainer}>
+                                <div className={classes.mobilePrice}>
+                                  ${product.price}
+                                </div>
+                                <div
+                                  className={classes.mobileDiscountPercentage}
+                                >
+                                  20%
+                                </div>
                               </div>
                             </div>
                           </div>
                           <button
                             onClick={() => onAddTOCart(product)}
-                            className={classes.btnAddToCart}
+                            className={classes.mobilebtnAddToCart}
                           >
-                            Add to Cart
+                            ADD TO CART
                           </button>
                           {/* <button
                             onClick={() => {

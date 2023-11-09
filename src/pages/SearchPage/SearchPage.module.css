@@ -26,6 +26,42 @@
   width:35vw
 
 }
+.mobilebtnAddToCart{
+  font-weight: 600;
+  background-color: #FF3C3C;
+  color: white;
+  border: none;
+  padding-left: 2vw;
+    padding-right: 1vw;
+    padding-top: 3vw;
+    padding-bottom: 3vw;
+    /* border-radius: 5px; */
+    font-size: 2.5vw;
+
+}
+
+.mobilePrice{
+  /* color: #000000; */
+  font-size: 3vw;
+  font-weight: 500;
+}
+.DiscountedContainer{
+  width: 26.25vw;
+  background-color: yellow;
+  display: flex;
+  /* gap: 2vw; */
+  justify-content: space-between;
+}
+.mobilediscountedPrice{
+  text-decoration: line-through;
+  color: gray;
+  font-size: 3vw;
+
+}
+.mobileDiscountPercentage{
+  font-size: 3vw;
+
+}
 
 .itemsContainer{
    
