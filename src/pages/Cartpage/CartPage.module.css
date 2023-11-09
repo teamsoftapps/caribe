@@ -234,6 +234,9 @@ background-color: #F8F8F8
 
 }
 
+.productImage{
+    height: 7vw; width: 5vw;
+}
 
 @media screen and (max-width:870px) {
     .ProductContainer{

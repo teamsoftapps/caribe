@@ -142,7 +142,6 @@ export const CartPage = () => {
                       <div>
                         <img
                           className={classes.productImage}
-                          style={{ height: "7vw", width: "5vw" }}
                           src={product.image}
                           alt="product image"
                         />
