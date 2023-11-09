@@ -1,0 +1,36 @@
+.main{
+    /* display: none; */
+}
+
+@media screen and (max-width:797px) {
+    .main{
+        /* display: none; */
+    }
+    
+}
+
+.text{
+    font-size: .7vw;
+/* font-size: smaller; */
+}
+
+.headings{
+
+}
+
+.contentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:start ;
+    margin-right: 4vw;
+    margin-top: 2vh;
+    text-align: start; 
+    color: gray; 
+    /* padding-bottom: 100px; */
+}
+
+.heading{
+    font-size: 1.7vw;
+     font-weight: bold
+}
