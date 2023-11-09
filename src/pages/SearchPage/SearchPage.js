@@ -181,6 +181,7 @@ export const SearchPage = () => {
                               style={{
                                 textAlign: "start",
                                 fontWeight: "bold",
+                                color: "#1c1c1c",
                                 // fontSize: "1.2vw",
                               }}
                               className={classes.catgoriesText}
@@ -214,23 +215,6 @@ export const SearchPage = () => {
                           >
                             ADD TO CART
                           </button>
-                          {/* <button
-                            onClick={() => {
-                              onAddToWishList(product);
-                            }}
-                            className={classes.btnAddToWishlist}
-                          >
-                            <img
-                              className={classes.addToWishList}
-                              src={images.addToWishlist}
-                            />
-                            <p
-                              style={{ fontWeight: 600 }}
-                              className={classes.catgoriesText}
-                            >
-                              Add to Wishlist
-                            </p>
-                          </button> */}
                         </div>
                       </div>
                     </div>
@@ -327,6 +311,15 @@ export const SearchPage = () => {
                 })}
           </div>
         </div>
+        {isMobile && (
+          <div className={classes.moreContent}>
+            <div>
+              <button onClick={() => {}} className={classes.btnSeemore}>
+                See more
+              </button>
+            </div>
+          </div>
+        )}
         <Footer></Footer>
       </div>
     </div>

@@ -46,12 +46,18 @@
   font-weight: 500;
 }
 .DiscountedContainer{
-  width: 26.25vw;
+  width: 22vw;
   background-color: yellow;
   display: flex;
   /* gap: 2vw; */
   justify-content: space-between;
+  padding-top: 1vw;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  margin-bottom: 3vw;
 }
+
+
 .mobilediscountedPrice{
   text-decoration: line-through;
   color: gray;
@@ -176,6 +182,23 @@
     padding-bottom: 0.5vw;
     border-radius: 5px; 
     font-size: .7vw;
+}
+
+.btnSeemore{
+
+  background-color: #F46B5B;
+  color: white;
+  border: none;
+  border-radius: 5px; 
+  padding-left: 8vw;
+  padding-right: 8vw;
+    padding-top: 2.5vw;
+    padding-bottom: 2.5vw;
+    font-size: 3.5vw;
+}
+
+.moreContent{
+  margin-top: 10vw;
 }
 
 .price{

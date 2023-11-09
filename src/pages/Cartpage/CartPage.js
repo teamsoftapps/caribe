@@ -47,8 +47,20 @@ export const CartPage = () => {
   const [products, setProducts] = useState(Dummy_Products);
   const productsRedux = useSelector((state) => state.cart.items);
   const productsprice = useSelector((state) => state.cart.totalPrice);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 870);
   // const [prices, setprices] = useState();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const HandleResize = () => {
+      setIsMobile(window.innerWidth < 870);
+    };
+
+    window.addEventListener("resize", HandleResize);
+    return () => {
+      window.removeEventListener("resize", HandleResize);
+    };
+  }, [isMobile]);
   useEffect(() => {
     console.log(productsRedux, "productsredux", productsprice);
   });
@@ -120,61 +132,133 @@ export const CartPage = () => {
               ></div>
             </div>
             {/* {products.map((product, index) => { */}
-            {productsRedux?.map((product, index) => {
-              return (
-                <div key={index} className={classes.productitemContainer}>
-                  <div>
-                    <img
-                      style={{ height: "7vw", width: "5vw" }}
-                      src={product.image}
-                      alt="product image"
-                    />
-                  </div>
-                  <div
-                    style={{
-                      color: "#707070",
-                      fontWeight: "600",
-                      fontSize: "1vw",
-                    }}
-                    className={classes.spacing}
-                  >
-                    {product.title}
-                  </div>
-                  <p style={{ width: "5vw" }} className={classes.priceText}>
-                    ${product.price}.00
-                  </p>
-                  <div className={classes.qtyContainer}>
+            {isMobile
+              ? productsRedux?.map((product, index) => {
+                  return (
                     <div
-                      onClick={() => onIncrementProductQuantity(product)}
-                      className={classes.iconContainer}
+                      key={index}
+                      className={classes.mobileproductitemContainer}
                     >
-                      <img style={{ width: "10px" }} src={images.plus}></img>
-                    </div>
+                      <div>
+                        <img
+                          className={classes.productImage}
+                          style={{ height: "7vw", width: "5vw" }}
+                          src={product.image}
+                          alt="product image"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          color: "#707070",
+                          fontWeight: "600",
+                          fontSize: "1vw",
+                        }}
+                        className={classes.spacing}
+                      >
+                        {product.title}
+                      </div>
+                      <p style={{ width: "5vw" }} className={classes.priceText}>
+                        ${product.price}.00
+                      </p>
+                      <div className={classes.qtyContainer}>
+                        <div
+                          onClick={() => onIncrementProductQuantity(product)}
+                          className={classes.iconContainer}
+                        >
+                          <img
+                            style={{ width: "10px" }}
+                            src={images.plus}
+                          ></img>
+                        </div>
 
-                    <div className={classes.qtyBox}>{product.quantity}</div>
-                    <div
-                      onClick={() => onDecrementProductQuantity(product)}
-                      className={classes.iconContainer}
-                    >
-                      <img style={{ width: "10px" }} src={images.minus}></img>
+                        <div className={classes.qtyBox}>{product.quantity}</div>
+                        <div
+                          onClick={() => onDecrementProductQuantity(product)}
+                          className={classes.iconContainer}
+                        >
+                          <img
+                            style={{ width: "10px" }}
+                            src={images.minus}
+                          ></img>
+                        </div>
+                      </div>
+                      <div
+                        className={`${classes.spacing} ${classes.priceText}`}
+                      >{`$${product.price * product.quantity}.00`}</div>
+                      <div
+                        className={classes.spacing}
+                        onClick={() => onRemoveItemFromCart(product)}
+                      >
+                        <img
+                          className={classes.deleteIcon}
+                          src={images.deleteIcon}
+                          alt="delete"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    className={`${classes.spacing} ${classes.priceText}`}
-                  >{`$${product.price * product.quantity}.00`}</div>
-                  <div
-                    className={classes.spacing}
-                    onClick={() => onRemoveItemFromCart(product)}
-                  >
-                    <img
-                      className={classes.deleteIcon}
-                      src={images.deleteIcon}
-                      alt="delete"
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })
+              : productsRedux?.map((product, index) => {
+                  return (
+                    <div key={index} className={classes.productitemContainer}>
+                      <div>
+                        <img
+                          style={{ height: "7vw", width: "5vw" }}
+                          src={product.image}
+                          alt="product image"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          color: "#707070",
+                          fontWeight: "600",
+                          fontSize: "1vw",
+                        }}
+                        className={classes.spacing}
+                      >
+                        {product.title}
+                      </div>
+                      <p style={{ width: "5vw" }} className={classes.priceText}>
+                        ${product.price}.00
+                      </p>
+                      <div className={classes.qtyContainer}>
+                        <div
+                          onClick={() => onIncrementProductQuantity(product)}
+                          className={classes.iconContainer}
+                        >
+                          <img
+                            style={{ width: "10px" }}
+                            src={images.plus}
+                          ></img>
+                        </div>
+
+                        <div className={classes.qtyBox}>{product.quantity}</div>
+                        <div
+                          onClick={() => onDecrementProductQuantity(product)}
+                          className={classes.iconContainer}
+                        >
+                          <img
+                            style={{ width: "10px" }}
+                            src={images.minus}
+                          ></img>
+                        </div>
+                      </div>
+                      <div
+                        className={`${classes.spacing} ${classes.priceText}`}
+                      >{`$${product.price * product.quantity}.00`}</div>
+                      <div
+                        className={classes.spacing}
+                        onClick={() => onRemoveItemFromCart(product)}
+                      >
+                        <img
+                          className={classes.deleteIcon}
+                          src={images.deleteIcon}
+                          alt="delete"
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
           <div className={classes.totalContainer}>
             <h4 className={classes.totalText}>Total</h4>
