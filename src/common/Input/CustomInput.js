@@ -16,9 +16,20 @@ export const CustomInput = ({
   heading,
   headingstyle,
   containerStyle,
+  isMobile,
 }) => {
+  let additionalMobileStyles;
+  if (isMobile) {
+    additionalMobileStyles = {
+      height: "13vw",
+    };
+  }
+
   return (
-    <div className={classes.inputContainer} style={inputstyle}>
+    <div
+      className={classes.inputContainer}
+      style={{ ...inputstyle, ...additionalMobileStyles }}
+    >
       {/* <label htmlFor="name">Name</label> */}
       {heading && (
         <div>

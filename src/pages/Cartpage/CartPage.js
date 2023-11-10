@@ -48,7 +48,7 @@ export const CartPage = () => {
   const productsRedux = useSelector((state) => state.cart.items);
   const productsprice = useSelector((state) => state.cart.totalPrice);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 870);
-  // const [prices, setprices] = useState();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -99,15 +99,17 @@ export const CartPage = () => {
   };
   return (
     <>
-      <Navbar />
+      <Navbar showSearch={true} />
       <div className={classes.wrapper}>
         <div className={classes.cartContainer}>
-          <h1
+          <div
+            className={classes.cartTitle}
             style={{ marginBottom: "5vh", marginTop: "5vh", color: "262626" }}
           >
             CART
-          </h1>
+          </div>
           {/* <div>header</div> */}
+
           <div className={classes.ProductContainer}>
             {/* <div className={classes.productInnerWrapper}> */}
             <div className={classes.productsHeader}>
@@ -115,16 +117,24 @@ export const CartPage = () => {
               <div className={`${classes.spacing}  ${classes.headingText}`}>
                 {`Image`}
               </div>
-              <div className={`${classes.spacing}  ${classes.headingText}`}>
+              <div
+                className={`${classes.spacing} ${classes.spacingMob} ${classes.headingText}`}
+              >
                 Product
               </div>
-              <div className={`${classes.spacing}  ${classes.headingText}`}>
+              <div
+                className={`${classes.spacing}  ${classes.headingText} ${classes.visibility}`}
+              >
                 Price
               </div>
-              <div className={`${classes.spacing}  ${classes.headingText}`}>
+              <div
+                className={`${classes.spacing}  ${classes.headingText} ${classes.visibility}`}
+              >
                 QTY
               </div>
-              <div className={`${classes.spacing}  ${classes.headingText}`}>
+              <div
+                className={`${classes.spacing} ${classes.mobTotalSpacing}  ${classes.headingText}`}
+              >
                 Total
               </div>
               <div
@@ -146,53 +156,72 @@ export const CartPage = () => {
                           alt="product image"
                         />
                       </div>
-                      <div
-                        style={{
-                          color: "#707070",
-                          fontWeight: "600",
-                          fontSize: "1vw",
-                        }}
-                        className={classes.spacing}
-                      >
-                        {product.title}
-                      </div>
-                      <p style={{ width: "5vw" }} className={classes.priceText}>
-                        ${product.price}.00
-                      </p>
-                      <div className={classes.qtyContainer}>
+                      <div className={classes.titlepriceContaienr}>
                         <div
-                          onClick={() => onIncrementProductQuantity(product)}
-                          className={classes.iconContainer}
+                          style={{
+                            color: "#707070",
+                            color: "rgb(39 39 39)",
+                            fontWeight: 500,
+                          }}
+                          className={classes.spacing}
                         >
-                          <img
-                            style={{ width: "10px" }}
-                            src={images.plus}
-                          ></img>
+                          {product.title}
                         </div>
+                        <p
+                          style={{ width: "5vw" }}
+                          className={classes.priceText}
+                        >
+                          ${product.price}.00
+                        </p>
+                        <div style={{ color: "#F780AE", fontSize: "3.5vw" }}>
+                          Color: Red
+                        </div>
+                        <div style={{ color: "#F780AE", fontSize: "3.5vw" }}>
+                          Size: L
+                        </div>
+                      </div>
 
-                        <div className={classes.qtyBox}>{product.quantity}</div>
+                      <div className={classes.TotalQtyWrapper}>
                         <div
-                          onClick={() => onDecrementProductQuantity(product)}
-                          className={classes.iconContainer}
+                          style={{ fontSize: "4vw" }}
+                          className={`${classes.spacing} ${classes.priceText}`}
+                        >{`$${product.price * product.quantity}.00`}</div>
+
+                        <div className={classes.qtyContainer}>
+                          <div
+                            onClick={() => onIncrementProductQuantity(product)}
+                            className={classes.iconContainer}
+                          >
+                            <img
+                              style={{ width: "10px" }}
+                              src={images.plus}
+                            ></img>
+                          </div>
+
+                          <div className={classes.qtyBox}>
+                            {product.quantity}
+                          </div>
+                          <div
+                            style={{ backgroundColor: "#F46B5B" }}
+                            onClick={() => onDecrementProductQuantity(product)}
+                            className={classes.iconContainer}
+                          >
+                            <img
+                              style={{ width: "10px" }}
+                              src={images.minus}
+                            ></img>
+                          </div>
+                        </div>
+                        <div
+                          className={classes.spacing}
+                          onClick={() => onRemoveItemFromCart(product)}
                         >
                           <img
-                            style={{ width: "10px" }}
-                            src={images.minus}
-                          ></img>
+                            className={classes.deleteIcon}
+                            src={images.deleteIcon}
+                            alt="delete"
+                          />
                         </div>
-                      </div>
-                      <div
-                        className={`${classes.spacing} ${classes.priceText}`}
-                      >{`$${product.price * product.quantity}.00`}</div>
-                      <div
-                        className={classes.spacing}
-                        onClick={() => onRemoveItemFromCart(product)}
-                      >
-                        <img
-                          className={classes.deleteIcon}
-                          src={images.deleteIcon}
-                          alt="delete"
-                        />
                       </div>
                     </div>
                   );
@@ -259,17 +288,23 @@ export const CartPage = () => {
                   );
                 })}
           </div>
-          <div className={classes.totalContainer}>
-            <h4 className={classes.totalText}>Total</h4>
-            <h2 className={classes.totalText}>$600</h2>
-          </div>
+
+          {!isMobile && (
+            <div className={classes.totalContainer}>
+              <h4 className={classes.totalText}>Total</h4>
+              <h2 className={classes.totalText}>{productsprice}</h2>
+            </div>
+          )}
 
           {/* CHECKOUT CONTAINERS  */}
 
           <div className={classes.CheckoutContainer}>
             <div className={classes.voucherContainer}>
-              <h1>Voucher</h1>
-              <p style={{ fontSize: "medium", color: "#414141" }}>
+              <div className={classes.VoucherHeading}>Voucher</div>
+              <p
+                className={classes.voucherMobile}
+                style={{ fontSize: "medium", color: "#414141" }}
+              >
                 Enter your coupen if you have one
               </p>
               <input
@@ -277,60 +312,82 @@ export const CartPage = () => {
                 type="text"
                 placeholder="Voucher Code"
               />
-              <div>
+              <div className={classes.blackbtn}>
                 <button className={` ${classes.btnText} ${classes.applybtn}`}>
                   Apply
                 </button>
               </div>
             </div>
-            <div
-              style={{
-                width: "40%",
-                display: "flex",
-                justifyContent: "center",
-                backgroundColor: " #F8F8F8",
-                paddingBottom: "5vh",
-              }}
-            >
+            <div className={classes.mobileTotalContainer}>
               <div className={classes.checkoutInnerContainer}>
                 <div className={classes.checkoutContent}>
                   {/* <p className={classes.headingText}>Subtotal</p> */}
                   <p
-                    className={classes.headingText}
+                    className={`${classes.headingText} ${classes.mobileHeadingText}`}
                     style={{ color: "rgb(112, 112, 112)" }}
                   ></p>
                 </div>
                 <div className={classes.checkoutContent}>
-                  <p className={classes.headingText}>Shipping</p>
-                  <p
-                    className={classes.headingText}
+                  <div
+                    className={`${classes.headingText} ${classes.mobileHeadingText}`}
+                  >
+                    Subtotal
+                  </div>
+                  <div
+                    className={`${classes.headingText} ${classes.mobileHeadingText}`}
                     style={{ color: "rgb(112, 112, 112)" }}
                   >
-                    100$
-                  </p>
+                    ${productsprice}
+                  </div>
                 </div>
                 <div className={classes.checkoutContent}>
-                  <p
-                    className={classes.headingText}
-                    style={{ color: "#FF3C3C" }}
+                  <div
+                    className={`${classes.headingText} ${classes.mobileHeadingText}`}
+                  >
+                    Shipping
+                  </div>
+                  <div
+                    className={`${classes.headingText} ${classes.mobileHeadingText}`}
+                    style={{ color: "rgb(112, 112, 112)" }}
+                  >
+                    $100
+                  </div>
+                </div>
+                <div className={classes.checkoutContent}>
+                  <div
+                    className={`${classes.headingText} ${classes.mobileHeadingText}`}
+                    style={{ fontWeight: "bold" }}
                   >
                     {" "}
                     Total
-                  </p>
-                  <p
-                    className={classes.headingText}
-                    style={{ color: "#FF3C3C" }}
+                  </div>
+                  <div
+                    className={`${classes.headingText} ${classes.mobileHeadingText}`}
+                    style={{ fontWeight: "bold" }}
                   >
-                    {productsprice}
-                  </p>
+                    ${+productsprice + 100}
+                    {/* +100 */}
+                  </div>
                 </div>
+                {!isMobile && (
+                  <button
+                    onClick={onCheckout}
+                    className={` ${classes.btnText} ${classes.btnCheckout}`}
+                  >
+                    Checkout
+                  </button>
+                )}
+              </div>
+
+              {isMobile && (
                 <button
+                  style={{ width: "80vw" }}
                   onClick={onCheckout}
                   className={` ${classes.btnText} ${classes.btnCheckout}`}
                 >
                   Checkout
                 </button>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -339,3 +396,5 @@ export const CartPage = () => {
     </>
   );
 };
+
+// i18 language translation between english and french

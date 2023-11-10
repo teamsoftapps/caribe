@@ -34,20 +34,24 @@ border:none;
     font-weight: 600;
 }
 
-@media screen and (max-width:767px) {
-    .input::placeholder{
-        font-size: 1.2vh;
-    }
-    
-}
+
 
 
 @media screen and (max-width: 620px){
-    .inputContainer{    height: 6vw;
+    .inputContainer{   
+         /* height: 6vw; */
 
     }
     .input{
-        height: 6vw;
+        /* height: 6vw; */
     }
 
+}
+
+@media screen and (max-width:870px) {
+    .input::placeholder{
+        font-size: 3.2vw;
+        font-weight: normal;
+    }
+    
 }

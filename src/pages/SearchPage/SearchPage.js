@@ -73,7 +73,7 @@ export const SearchPage = () => {
   }, [isMobile]);
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar showSearch={true}></Navbar>
       <div className={classes.wrapper}>
         {/* What are you looking for --------------- */}
         <div className={classes.searchContainer}>

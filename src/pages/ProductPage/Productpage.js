@@ -117,7 +117,7 @@ export const Productpage = () => {
   };
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar showSearch={true}></Navbar>
       {/* wrapper */}
       <div
         style={{
