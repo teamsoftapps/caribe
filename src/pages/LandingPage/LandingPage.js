@@ -76,14 +76,8 @@ const LandingPage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
   const [istemsToShow, setItemsToShow] = useState(4);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
-  useEffect(() => {
-    const body = {
-      title: "DUMMY AUTH TOKEN ",
-    };
-    dispatch(login(body));
-    console.log(" Stored Token :", token);
-  }, []);
+  const isLoggedin = useSelector((state) => state.auth.isLoggedin);
+  useEffect(() => {}, []);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -102,7 +96,11 @@ const LandingPage = () => {
   const handleOnProductClick = (product) => {
     const productInfo = product;
     console.log(product, "product item");
-    navigate("/product", { state: productInfo });
+    if (isLoggedin) {
+      navigate("/product", { state: productInfo });
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <>

@@ -6,7 +6,7 @@ const initialState = {
   isloading: false,
 };
 
-const BackendUrl = "https://dummyjson.com/products/add";
+const BackendUrl = "";
 
 export const login = createAsyncThunk("auth", async (body) => {
   try {

@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Drawer } from "../Drawer/Drawer";
+import { useSelector } from "react-redux";
 
 // import { useDispatch } from "react-redux";
 const Navbar = () => {
@@ -15,6 +16,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const modalRef = useRef();
+  const isLoggedin = useSelector((state) => state.auth.isLoggedin);
 
   // const dispatch = useDispatch();
 
@@ -44,7 +46,10 @@ const Navbar = () => {
   };
 
   const onOpenCart = () => {
-    navigate("/cart-page");
+    if (isLoggedin) {
+      navigate("/cart-page");
+    }
+    navigate("/login");
   };
 
   const onClickNavbarDrawer = () => {
@@ -267,10 +272,10 @@ const Navbar = () => {
                   className={classes.contactIcons}
                   src={images.shoppingCart}
                 ></img>
-                <img
+                {/* <img
                   className={classes.contactIcons}
                   src={images.emailblack}
-                ></img>
+               ></img>*/}
                 <img className={classes.contactIcons} src={images.user}></img>
               </div>
             </div>
