@@ -41,9 +41,6 @@ export const images = {
   off10ver: require("../../assets/off10ver.png"),
   shoppingBag: require("../../assets/shopping-bag.png"),
   cross: require("../../assets/close.png"),
-<<<<<<< HEAD
   checked: require("../../assets/checked.png"),
-=======
   cart: require("../../assets/cart.png"),
->>>>>>> 2ab7805acea05e22d583169db1f44059b1eaf4e7
 };
