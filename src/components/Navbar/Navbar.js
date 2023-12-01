@@ -9,7 +9,7 @@ import { Drawer } from "../Drawer/Drawer";
 import { useSelector } from "react-redux";
 
 // import { useDispatch } from "react-redux";
-const Navbar = () => {
+const Navbar = ({ showSearch }) => {
   const [showNavModal, setShowNavModal] = useState(false);
   const [query, setQuery] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 870);
@@ -282,7 +282,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      {isMobile ? (
+      {isMobile && showSearch ? (
         <div className={classes.searchBarContainer}>
           <form className={classes.searchform} onSubmit={onSubmitQuery}>
             <input

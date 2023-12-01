@@ -105,9 +105,9 @@
   width: 20px;
   cursor: pointer;
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-23%);
+  right: 1vh;
+  top: 5.3vh;
+
 }
 .image{
   width:30vh;
@@ -207,9 +207,9 @@ font-size: 1.2vh;
   font-family: 'Poppins', sans-serif;
 
 }
-.PassEye {
-  width: 2vh;
-  transform: translateY(-42%);
+.PassEye {  right: 1vh;
+  top: 4.5vh;
+ 
 }
 .image{
   width: 17vh;

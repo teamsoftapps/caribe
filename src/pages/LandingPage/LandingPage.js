@@ -106,7 +106,7 @@ const LandingPage = () => {
   };
   return (
     <>
-      <Navbar />
+      <Navbar showSearch={true} />
 
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {isMobile ? (

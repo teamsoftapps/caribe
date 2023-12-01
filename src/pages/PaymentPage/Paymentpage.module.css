@@ -458,3 +458,90 @@ padding-bottom: .5vw;
    
 
 }
+
+
+.OrderSummary{
+    
+    height: 15vw;
+    background-color: #E0E0E0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.summaryInerContainer{
+    margin-left: 6vw;
+}
+
+.SummaryPriceText{
+    margin-right: 6vw;
+    font-size: 4vw;
+    color: #F46B5B;
+}
+
+.summaryInerContainer{
+    display: flex;
+    gap: 2vw
+    ;
+}
+
+@media screen and (max-width:870px) {
+    .mobileBillingDetails{
+        font-weight: 500;
+        text-align: start;
+        color: black;
+        font-size: 2.5vw;
+
+
+
+    }
+
+  .mainHeading{
+    font-size: 4vw;
+    font-weight: 500;
+    text-align: start;
+  }
+
+    .btnText{
+        font-size: 3.5vw;
+    }
+
+    .btnBackToShopping{
+        width: 85vw;
+        height: 11vw;
+    }
+
+    .btnPayment{
+        width: 85vw;
+        height: 11vw;
+    }
+
+    .buttonContainer{
+        flex-direction: column;
+    }
+    .rowForm{
+    flex-direction: column;
+    }
+    .visibility{
+        display: none;
+    }
+    .header{
+        background-color: white;
+        border-bottom: .2vw solid #D8D8D8;
+        margin-bottom: 5vw;
+    }
+
+    .productsContainer{
+        flex-direction: column;
+    }
+
+    .productsInnerContainer{
+        display: none;
+    }
+
+    .checkoutContainer{
+        width: 85vw
+    }
+    
+}

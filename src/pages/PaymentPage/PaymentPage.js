@@ -9,6 +9,7 @@ import { images } from "../../utils/Images";
 import { useFormik } from "formik";
 import paymentSchema from "../../schemas/PaymentSchema";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 let Dummy_Products = [
   {
@@ -53,7 +54,14 @@ const invalitStyle = {
   fontSize: ".7vw",
 };
 
+const mobileInvalidStyles = {
+  color: "red",
+  textAlign: "start",
+  fontSize: "3vw",
+};
+
 export const PaymentPage = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 870);
   const navigate = useNavigate();
   const onConfirmSubmission = () => {
     navigate("/");
@@ -70,19 +78,58 @@ export const PaymentPage = () => {
       },
     });
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 870);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobile]);
+
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar showSearch={false}></Navbar>
       <div className={classes.wrapper}>
+        {isMobile && (
+          <div className={classes.OrderSummary}>
+            <div className={classes.summaryInerContainer}>
+              <img
+                style={{ width: "4.5vw", height: "4.5vw" }}
+                src={images.cart}
+                alt="cart"
+              />
+
+              <div style={{ fontSize: "3vw" }}>Order Summary</div>
+            </div>
+            <div className={classes.SummaryPriceText}>$420</div>
+          </div>
+        )}
         <div className={classes.checkoutContainer}>
           <div className={classes.mainHeading}>PAYMENT</div>
           <div className={classes.header}>
-            <p style={{ marginLeft: "1vw" }} className={classes.headingText}>
-              SHOPPING IMFORMATION
-            </p>
+            {!isMobile && (
+              <p
+                style={{ marginLeft: "1vw" }}
+                className={`${classes.headingText} ${classes.mobileBillingDetails}`}
+              >
+                SHOPPING INFORMATION
+              </p>
+            )}
+
+            {isMobile && (
+              <p
+                style={{ marginBottom: "6vw" }}
+                className={`${classes.headingText} ${classes.mobileBillingDetails}`}
+              >
+                YOUR CREDIT CARD
+              </p>
+            )}
+
             <p
               style={{ marginRight: "12vw", width: "10vw" }}
-              className={classes.headingText}
+              className={`${classes.headingText} ${classes.visibility}`}
             >
               YOUR ORDER
             </p>
@@ -91,8 +138,12 @@ export const PaymentPage = () => {
             <div className={classes.formContainer}>
               <form style={{ width: "55vw" }} onSubmit={handleSubmit}>
                 <div className={classes.informationContainer}>
-                  <p className={classes.changeInfo}>Change</p>
-                  <div className={classes.InformationCard}>
+                  <p className={`${classes.changeInfo} ${classes.visibility}`}>
+                    Change
+                  </p>
+                  <div
+                    className={`${classes.InformationCard} ${classes.visibility}`}
+                  >
                     <div className={classes.InformationInnerCard}>
                       <div className={classes.informationInnerWrapper}>
                         <div className={classes.informationHeading}>
@@ -132,17 +183,19 @@ export const PaymentPage = () => {
                     </div>
                   </div>
                 </div>
-                <div
-                  style={{
-                    textAlign: "start",
-                    marginLeft: "1vw",
-                    fontWeight: "bold",
-                    fontSize: "1.2vw",
-                    marginTop: "1.5vw",
-                  }}
-                >
-                  YOUR CREDIT CARD
-                </div>
+                {!isMobile && (
+                  <div
+                    style={{
+                      textAlign: "start",
+                      marginLeft: "1vw",
+                      fontWeight: "bold",
+                      fontSize: "1.2vw",
+                      marginTop: "1.5vw",
+                    }}
+                  >
+                    YOUR CREDIT CARD
+                  </div>
+                )}
                 <div
                   style={{
                     display: "flex",
@@ -154,8 +207,9 @@ export const PaymentPage = () => {
                   <div style={{ width: "100%" }} className={classes.columnForm}>
                     <div style={{ marginTop: ".7vw ", width: "100%" }}>
                       <CustomInput
+                        isMobile={isMobile}
                         // inputstyle={{ width: "54vw" }}
-                        inputstyle={{ width: "100%" }}
+                        inputstyle={{ width: "80vw", height: "8vw" }}
                         placeholder={"Card Number"}
                         type="text"
                         id="cardnumber"
@@ -176,8 +230,9 @@ export const PaymentPage = () => {
                       }}
                     >
                       <CustomInput
+                        isMobile={isMobile}
                         // inputstyle={{ width: "54vw" }}
-                        inputstyle={{ width: "100%" }}
+                        inputstyle={{ width: "80vw", height: "8vw" }}
                         placeholder={"Name on Card"}
                         type="text"
                         id="name"
@@ -192,43 +247,35 @@ export const PaymentPage = () => {
                     </div>
                   </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "2vw",
-                      width: "100%",
-                      // justifyContent: "space-between",
-                    }}
-                    className={classes.rowForm}
-                  >
-                    <CustomInput
-                      inputstyle={{ width: "100%" }}
-                      placeholder={"Expiration (MM/ YY)"}
-                      type="text"
-                      id="expiration"
-                      name="expiration"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.expiration}
-                      touched={touched?.expiration}
-                      errors={errors?.expiration}
-                      invalitStyle={invalitStyle}
-                    />
+                  <CustomInput
+                    isMobile={isMobile}
+                    inputstyle={{ width: "80vw", height: "8vw" }}
+                    placeholder={"Expiration (MM/ YY)"}
+                    type="text"
+                    id="expiration"
+                    name="expiration"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.expiration}
+                    touched={touched?.expiration}
+                    errors={errors?.expiration}
+                    invalitStyle={invalitStyle}
+                  />
 
-                    <CustomInput
-                      inputstyle={{ width: "100%" }}
-                      placeholder={"Security code"}
-                      type="text"
-                      id="securitycode"
-                      name="securitycode"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.securitycode}
-                      touched={touched?.securitycode}
-                      errors={errors?.securitycode}
-                      invalitStyle={invalitStyle}
-                    />
-                  </div>
+                  <CustomInput
+                    isMobile={isMobile}
+                    inputstyle={{ width: "80vw", height: "8vw" }}
+                    placeholder={"Security code"}
+                    type="text"
+                    id="securitycode"
+                    name="securitycode"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.securitycode}
+                    touched={touched?.securitycode}
+                    errors={errors?.securitycode}
+                    invalitStyle={invalitStyle}
+                  />
                 </div>
                 <div className={classes.buttonContainer}>
                   <button className={classes.btnBackToShopping}>
