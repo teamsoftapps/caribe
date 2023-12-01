@@ -1,5 +1,8 @@
+/** @format */
+
 .App {
   text-align: center;
+  background-color: #fff;
 }
 
 .App-logo {
@@ -35,4 +38,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+body::-webkit-scrollbar {
+  width: 7px; /* Adjust the width as needed */
+}
+
+body::-webkit-scrollbar-thumb {
+  border: 1px solid #fff;
+  border-radius: 1vw;
+  background-color: orangered;
+  /* Change the color to your desired color */
+}
+body::-webkit-scrollbar-track {
+  /* background-color: #fff;
+   Change the color to your desired color */
+}
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  /* background-color: #fff; */
+}
+.route-specific {
+  /* background-color: #fff; */
 }
