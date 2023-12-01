@@ -5,8 +5,10 @@ import search from "../../utils/Search.svg";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Drawer } from "../Drawer/Drawer";
+// import { Drawer } from "../Drawer/Drawer";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 // import { useDispatch } from "react-redux";
 const Navbar = ({ showSearch }) => {
@@ -61,135 +63,146 @@ const Navbar = ({ showSearch }) => {
     setShowNavModal(false);
   };
 
+  const varients = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "-100%" },
+  };
+
   return (
     <>
       <div className={classes.navContainer}>
         {isMobile && (
           <>
-            {showNavModal ? (
-              <div className={classes.modalAnimation}>
-                <div className={classes.crossContainer}>
-                  <img
-                    onClick={onCloseModal}
-                    className={classes.crossIcon}
-                    src={images.cross}
-                    alt="close"
-                  />
-                </div>
-                <div className={classes.modelSocialsComtainer}>
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.person}
-                  ></img>
-                  <div className={classes.drawerText}>
-                    <a className={classes.link} href="">
-                      Account
-                    </a>
-                  </div>
-                </div>
-                <div
-                  onClick={onOpenCart}
-                  className={classes.modelSocialsComtainer}
-                >
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.shoppingBag}
-                  ></img>
-                  <div className={classes.drawerText}>My Cart</div>
-                </div>
-                <div className={classes.modelSocialsComtainer}>
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.facebook}
-                  ></img>
-                  <div className={classes.drawerText}>
-                    <a
-                      className={classes.link}
-                      href="https://www.facebook.com/"
-                      target="_blank"
-                    >
-                      Facebook
-                    </a>
-                  </div>
-                </div>
-                <div className={classes.modelSocialsComtainer}>
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.instagram}
-                  ></img>
-                  <div className={classes.drawerText}>
-                    <a
-                      className={classes.link}
-                      href="https://www.instagram.com/explore/"
-                      target="_blank"
-                    >
-                      Instagram
-                    </a>
-                  </div>
-                </div>
-
-                <div className={classes.modelSocialsComtainer}>
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.twitter}
-                  ></img>
-                  <div className={classes.drawerText}>
-                    <a
-                      className={classes.link}
-                      target="_blank"
-                      href="https://twitter.com/"
-                    >
-                      Twitter
-                    </a>
-                  </div>
-                </div>
-                <div className={classes.modelSocialsComtainer}>
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.linkedin}
-                  ></img>
-                  <div className={classes.drawerText}>
-                    <a
-                      className={classes.link}
-                      target="_blank"
-                      href="https://linkedin.com/"
-                    >
-                      Linkedin
-                    </a>
-                  </div>
-                </div>
-                <div className={classes.modelSocialsComtainer}>
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.call}
-                  ></img>
-                  <div className={classes.drawerText}>
-                    <a
-                      className={classes.link}
-                      target="_blank"
-                      href="https://Email: +support@tronix.com/"
-                    >
-                      +12 345 6789 0
-                    </a>
-                  </div>
-                </div>
-                <div className={classes.modelSocialsComtainer}>
-                  <img
-                    className={classes.mobileDrawerIcon}
-                    src={images.email}
-                  ></img>
-                  <div className={classes.drawerText}>
-                    <a
-                      className={classes.link}
-                      target="_blank"
-                      href="Email: +support@tronix.com/"
-                    >
-                      +support@tronix.com
-                    </a>
-                  </div>
+            {/* <AnimatePresence> */}
+            <motion.nav
+              className={classes.modalAnimation}
+              variants={varients}
+              animate={!showNavModal ? "closed" : "open"}
+            >
+              <div className={classes.crossContainer}>
+                <img
+                  onClick={onCloseModal}
+                  className={classes.crossIcon}
+                  src={images.cross}
+                  alt="close"
+                />
+              </div>
+              <div className={classes.modelSocialsComtainer}>
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.person}
+                ></img>
+                <div className={classes.drawerText}>
+                  <a className={classes.link} href="">
+                    Account
+                  </a>
                 </div>
               </div>
-            ) : (
+              <div
+                onClick={onOpenCart}
+                className={classes.modelSocialsComtainer}
+              >
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.shoppingBag}
+                ></img>
+                <div className={classes.drawerText}>My Cart</div>
+              </div>
+              <div className={classes.modelSocialsComtainer}>
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.facebook}
+                ></img>
+                <div className={classes.drawerText}>
+                  <a
+                    className={classes.link}
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                  >
+                    Facebook
+                  </a>
+                </div>
+              </div>
+              <div className={classes.modelSocialsComtainer}>
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.instagram}
+                ></img>
+                <div className={classes.drawerText}>
+                  <a
+                    className={classes.link}
+                    href="https://www.instagram.com/explore/"
+                    target="_blank"
+                  >
+                    Instagram
+                  </a>
+                </div>
+              </div>
+
+              <div className={classes.modelSocialsComtainer}>
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.twitter}
+                ></img>
+                <div className={classes.drawerText}>
+                  <a
+                    className={classes.link}
+                    target="_blank"
+                    href="https://twitter.com/"
+                  >
+                    Twitter
+                  </a>
+                </div>
+              </div>
+              <div className={classes.modelSocialsComtainer}>
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.linkedin}
+                ></img>
+                <div className={classes.drawerText}>
+                  <a
+                    className={classes.link}
+                    target="_blank"
+                    href="https://linkedin.com/"
+                  >
+                    Linkedin
+                  </a>
+                </div>
+              </div>
+              <div className={classes.modelSocialsComtainer}>
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.call}
+                ></img>
+                <div className={classes.drawerText}>
+                  <a
+                    className={classes.link}
+                    target="_blank"
+                    href="https://Email: +support@tronix.com/"
+                  >
+                    +12 345 6789 0
+                  </a>
+                </div>
+              </div>
+              <div className={classes.modelSocialsComtainer}>
+                <img
+                  className={classes.mobileDrawerIcon}
+                  src={images.email}
+                ></img>
+                <div className={classes.drawerText}>
+                  <a
+                    className={classes.link}
+                    target="_blank"
+                    href="Email: +support@tronix.com/"
+                  >
+                    +support@tronix.com
+                  </a>
+                </div>
+              </div>
+            </motion.nav>
+            {/* </AnimatePresence> */}
+
+            {!showNavModal && (
               <div className={classes.navlogocontain}>
                 <img
                   className={classes.navdroplogo}

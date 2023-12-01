@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { addItemInACart, cartActions } from "../../store/reducers/cartSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -199,7 +200,9 @@ export const Productpage = () => {
                 -20% OFF
               </div>
             </div>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={onAddToCart}
               style={{
                 backgroundColor: "#ff3c3c",
@@ -234,7 +237,7 @@ export const Productpage = () => {
                   ADD TO CART
                 </p>
               </div>
-            </button>
+            </motion.button>
             {/* </div> */}
           </div>
         ) : (
@@ -408,7 +411,9 @@ export const Productpage = () => {
                   </button>
                 </div>
                 <div style={{ marginTop: "8vh" }}>
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={onAddToCart}
                     style={{
                       backgroundColor: "#ff3c3c",
@@ -417,33 +422,43 @@ export const Productpage = () => {
                       width: "100%",
                     }}
                   >
-                    <div
+                    <button
+                      onClick={onAddToCart}
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "1vw",
-
+                        backgroundColor: "#ff3c3c",
                         border: "none",
                         outline: "none",
                         width: "100%",
                       }}
                     >
-                      <img
-                        src={images.cartIcon}
-                        style={{ width: "1.2vw", height: "auto" }}
-                      />
-                      <p
+                      <div
                         style={{
-                          color: "white",
-                          fontSize: "1.2vw",
-                          fontWeight: "500",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "1vw",
+
+                          border: "none",
+                          outline: "none",
+                          width: "100%",
                         }}
                       >
-                        ADD TO CART
-                      </p>
-                    </div>
-                  </button>
+                        <img
+                          src={images.cartIcon}
+                          style={{ width: "1.2vw", height: "auto" }}
+                        />
+                        <p
+                          style={{
+                            color: "white",
+                            fontSize: "1.2vw",
+                            fontWeight: "500",
+                          }}
+                        >
+                          ADD TO CART
+                        </p>
+                      </div>
+                    </button>
+                  </motion.button>
                 </div>
               </div>
             </div>

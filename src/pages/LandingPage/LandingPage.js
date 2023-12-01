@@ -76,7 +76,9 @@ const LandingPage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
   const [istemsToShow, setItemsToShow] = useState(4);
   const dispatch = useDispatch();
-  const isLoggedin = useSelector((state) => state.auth.isLoggedin);
+  // const isLoggedin = useSelector((state) => state.auth.isLoggedin);
+  // for testing
+  const isLoggedin = true;
   useEffect(() => {}, []);
   const navigate = useNavigate();
 
@@ -96,7 +98,9 @@ const LandingPage = () => {
   const handleOnProductClick = (product) => {
     const productInfo = product;
     console.log(product, "product item");
+    console.log(isLoggedin);
     if (isLoggedin) {
+      console.log("reached here");
       navigate("/product", { state: productInfo });
     } else {
       navigate("/login");
