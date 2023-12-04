@@ -55,13 +55,37 @@ const Dummy_Products = [
     rating: 4,
     title: "VR",
   },
+  {
+    image: images.product3,
+    price: 20,
+    rating: 4,
+    title: "VR",
+  },
+  {
+    image: images.product4,
+    price: 20,
+    rating: 5,
+    title: "Ear pods",
+  },
+  {
+    image: images.product2,
+    price: 20,
+    rating: 3,
+    title: "head Phones",
+  },
+  {
+    image: images.product3,
+    price: 20,
+    rating: 4,
+    title: "VR",
+  },
 ];
 
 export const Productpage = () => {
   // const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 870);
   const [quantity, setQuantity] = useState(1);
-  const [istemsToShow, setItemsToShow] = useState(4);
+  const [istemsToShow, setItemsToShow] = useState(5);
   const dispatch = useDispatch();
   const location = useLocation();
   const productImage = location.state.image;
@@ -74,6 +98,7 @@ export const Productpage = () => {
   useEffect(() => {
     console.log(items, "items");
   });
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 870);
@@ -90,12 +115,15 @@ export const Productpage = () => {
   }, [isMobile]);
 
   const navigate = useNavigate();
-
+  var productInfo = "true";
   const handleOnProductClick = (product) => {
-    const productInfo = product;
+    var productInfo = product;
     console.log(product, "product item");
     navigate("/product", { state: productInfo });
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [productInfo]);
 
   const onAddQuantity = () => {
     setQuantity(quantity + 1);
@@ -709,7 +737,6 @@ export const Productpage = () => {
             color: "#707070",
             marginTop: "7vh",
             marginBottom: "7vh",
-            marginLeft: "10vw",
           }}
         >
           Related Product

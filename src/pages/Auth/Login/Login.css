@@ -12,6 +12,7 @@
   font-weight: bold;
 }
 .header {
+  width: 100vw;
   display:flex;
   background-color: #ff3c3c;
   z-index: 100; 
@@ -232,5 +233,4 @@ font-size: 1.2vh;
 
 
 }
-
 

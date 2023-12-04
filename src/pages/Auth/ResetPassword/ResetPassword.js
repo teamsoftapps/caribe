@@ -8,6 +8,9 @@ import { resetSchema } from "../../../schemas/ResetPassword";
 import { useState, useEffect } from "react";
 
 export const ResetPassword = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
 
   useEffect(() => {

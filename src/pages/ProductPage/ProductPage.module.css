@@ -140,7 +140,7 @@ align-self: center;
   }
   
   .productsContainer {
-    width: 100vw;
+    width: 80vw;
     height: auto;
     display: flex;
     flex-wrap: wrap;
@@ -581,6 +581,9 @@ align-self: center;
     font-size: 3.5vw;
     text-align: center;
   }
+
+  .productsContainer {
+    width: 100vw;}
   
 }
 
@@ -590,5 +593,6 @@ align-self: center;
     font-size: 6vw;
     font-weight: 500;
     align-self: start;
+    margin-left: 10vw;
   }
 }
